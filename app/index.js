@@ -8,9 +8,11 @@ import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-r
 
 import createHistory from 'history/createBrowserHistory'
 
-// import * as reducers from './reducers'
-import App from './components/app';
+// import * as reducers from '../reducers'
+import { user } from './reducers/userReducer.js'
+import App from './components/App';
 import MovieIndex from './components/movieIndex';
+
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 
@@ -19,22 +21,19 @@ const middleware = routerMiddleware(history)
 
 const store = createStore(
   combineReducers({
-    router: routerReducer
+    user: user,
+    router: routerReducer,
   }), devTools, applyMiddleware(middleware)
 )
-
-
 
 
 
 const router = (
   <Provider store={store} >
     <ConnectedRouter history={history} >
-      <Route path='/' component={App}>
-      </Route>
+      <App/>
     </ConnectedRouter>
-  </ Provider>
+  </Provider>
 )
 
 ReactDOM.render(router, document.getElementById('main'))
-
