@@ -4,9 +4,6 @@ import MovieCard from './MovieCard';
 export default class MovieIndex extends Component {
   constructor() {
     super();
-    this.state = {
-      popularMovies: []
-    }
   }
 
   componentDidMount(){
@@ -15,13 +12,12 @@ export default class MovieIndex extends Component {
         return response.json()
       })
       .then(json => {
-        console.log(json);
-        return this.setState({popularMovies: json.results})
+        this.props.addMovies(json.results)
       })
-  }
+  };
 
   render() {
-    const movies = this.state.popularMovies.map((movie, index) => {
+    const movies = this.props.movies.map((movie, index) => {
       return <MovieCard data={ movie } key={ index }/>
     });
     return (
@@ -30,4 +26,4 @@ export default class MovieIndex extends Component {
       </div>
     )
   }
-}
+};

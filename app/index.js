@@ -9,7 +9,7 @@ import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-r
 import createHistory from 'history/createBrowserHistory'
 
 // import * as reducers from '../reducers'
-import { user } from './reducers/userReducer.js'
+import { movies } from './reducers/userReducer.js'
 import App from './components/App';
 import MovieIndex from './components/movieIndex';
 
@@ -21,7 +21,7 @@ const middleware = routerMiddleware(history)
 
 const store = createStore(
   combineReducers({
-    user: user,
+    movies,
     router: routerReducer,
   }), devTools, applyMiddleware(middleware)
 )
