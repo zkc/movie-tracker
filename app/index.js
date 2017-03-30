@@ -10,11 +10,11 @@ import createHistory from 'history/createBrowserHistory'
 
 // import * as reducers from '../reducers'
 import { movies } from './reducers/movieReducer.js'
+import { user } from './reducers/loginReducer.js'
 import AppContainer from './containers/AppContainer';
 import MovieIndex from './components/MovieIndex';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-
 
 const history = createHistory()
 const middleware = routerMiddleware(history)
@@ -22,6 +22,7 @@ const middleware = routerMiddleware(history)
 const store = createStore(
   combineReducers({
     movies,
+    user,
     router: routerReducer,
   }), devTools, applyMiddleware(middleware)
 )

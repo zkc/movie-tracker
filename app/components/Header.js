@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
-import Login from './Login';
 
 class Header extends Component {
   constructor() {
@@ -11,6 +10,7 @@ class Header extends Component {
   }
 
   render() {
+    const { email } = this.props.user;
     return (
       <header>
         <NavLink to="/favorites">Favorites</NavLink>
@@ -19,7 +19,7 @@ class Header extends Component {
                type="text" placeholder="Search Movies"
                value={this.state.searchInput}
                onChange={(e) => this.setState({ searchInput: e.target.value })}/>
-        <NavLink to="/login">Sign In</NavLink>
+        { !email && <NavLink to="/login">Sign In</NavLink> }
       </header>
     )
   }
