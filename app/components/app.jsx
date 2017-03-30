@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import HeaderContainer from '../containers/HeaderContainer.js';
 import MovieIndexContainer from '../containers/MovieIndexContainer';
 import LoginContainer from '../containers/LoginContainer.js';
+import SingleMovie from './SingleMovie';
 
 export default class App extends Component {
   constructor() {
@@ -11,10 +12,16 @@ export default class App extends Component {
   }
 
   render() {
+    const { movies } = this.props;
     return (
       <div>
         <HeaderContainer />
         <Route exact path="/" component={ MovieIndexContainer }></Route>
+        <Route path="/movie/:id" render={ ({ match }) =>  {
+          const movie = movies.find(movie => movie.id === parseInt(match.params.id))
+          return <SingleMovie movie={movie} />
+        }}>
+        </Route>
         <Route exact path="/login" component={ LoginContainer }></Route>
       </div>
     )
