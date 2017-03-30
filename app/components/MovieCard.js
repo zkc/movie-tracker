@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 const MovieCard = ({ data }) => {
-  const baseURL = 'https://image.tmdb.org/t/p/w300'
+  const { id, title, poster_path } = data
+  const baseURL = 'https://image.tmdb.org/t/p/w300';
   return (
-    <div className="movie-card">
-      <p>{data.title}</p>
-      <img src={baseURL + data.poster_path}/>
-    </div>
+    <Link to={`/movie/${id}`}>
+      <img src={baseURL + poster_path}/>
+    </Link>
   )
 }
 

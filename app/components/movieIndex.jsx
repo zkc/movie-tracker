@@ -22,7 +22,7 @@ export default class MovieIndex extends Component {
     });
     return (
       <div>
-        {movies}
+       { movies }
       </div>
     )
   }

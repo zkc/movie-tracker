@@ -4,7 +4,7 @@ import MovieIndex from '../components/MovieIndex';
 import * as actions from '../actions/actions.js';
 
 const mapStateToProps = (state) => {
-  return {movies: state.movies}
+  return { movies: state.movies }
 };
 
 const mapDispatchToProps = (dispatch) => {
