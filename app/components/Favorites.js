@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import MovieCard from './MovieCard'
+import MovieCardContainer from '../containers/MovieCardContainer'
 
 class Favorites extends Component {
   constructor() {
@@ -11,25 +11,38 @@ class Favorites extends Component {
   }
 
   getAllFavs(id) {
+    fetch(`http://localhost:3000/api/users/${id}/favorites`)
+    .then(response => {
+      return response.json()
+    })
+    .then(returned => {
+      this.props.addMovies(returned.data)
+      // this.setState({ favList: returned.data })
+    })
     //call api,
     // fetch('')
     //end promise by setting state
   }
 
-  render() {
-    const { user, history } = this.props
-    const { favList } = this.state
-
-    if(!user){ history.push('/new-user') }
-
-    this.getAllFavs(user.id)
-
-    return (
-      <div>
-        {favList.map((movie) => <MovieCard data={movie} />)}
-      </div>
-    )
+  componentDidMount() {
+    const { user, history} = this.props
+    if(!user.name){
+      history.push('/login')
+      return null
+    } else {
+      this.getAllFavs(user.id)
   }
+}
+
+  render() {
+    const { movies } = this.props
+      return (
+        <div>
+        {movies.map((movie, i) => <MovieCardContainer data={movie} key={i} />)}
+        </div>
+      )
+    }
+
 }
 
 export default Favorites
