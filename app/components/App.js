@@ -5,6 +5,7 @@ import HeaderContainer from '../containers/HeaderContainer.js';
 import MovieIndexContainer from '../containers/MovieIndexContainer';
 import LoginContainer from '../containers/LoginContainer.js';
 import SingleMovie from './SingleMovie';
+import NewUserContainer from '../containers/NewUserContainer.js';
 
 export default class App extends Component {
   constructor() {
@@ -23,6 +24,7 @@ export default class App extends Component {
         }}>
         </Route>
         <Route exact path="/login" component={ LoginContainer }></Route>
+        <Route exact path="/new-user" component={ NewUserContainer }></Route>
       </div>
     )
   }

@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Login from '../components/Login';
+import NewUser from '../components/NewUser';
 import * as actions from '../actions/actions.js';
-
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -12,4 +11,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(NewUser);
