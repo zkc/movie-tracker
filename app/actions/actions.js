@@ -4,3 +4,23 @@ export const addMovies = (movies) => {
     movies
   }
 };
+
+export const signIn = (user) => {
+  return {
+    type: 'SIGN_IN',
+    user
+  }
+};
+
+export const signOut = () => {
+  return {
+    type: 'SIGN_OUT'
+  }
+};
+
+export const signInFailed = (error) => {
+  return {
+    type: 'SIGN_IN_FAILED',
+    error
+  }
+};

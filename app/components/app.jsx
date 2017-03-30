@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+
 import HeaderContainer from '../containers/HeaderContainer.js';
 import MovieIndexContainer from '../containers/MovieIndexContainer';
+import LoginContainer from '../containers/LoginContainer.js';
 
 export default class App extends Component {
   constructor() {
@@ -11,7 +14,8 @@ export default class App extends Component {
     return (
       <div>
         <HeaderContainer />
-        <MovieIndexContainer />
+        <Route exact path="/" component={ MovieIndexContainer }></Route>
+        <Route exact path="/login" component={ LoginContainer }></Route>
       </div>
     )
   }
