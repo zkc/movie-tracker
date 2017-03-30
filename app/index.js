@@ -9,8 +9,8 @@ import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-r
 import createHistory from 'history/createBrowserHistory'
 
 // import * as reducers from '../reducers'
-import { movies } from './reducers/userReducer.js'
-import App from './components/App';
+import { movies } from './reducers/movieReducer.js'
+import AppContainer from './containers/AppContainer';
 import MovieIndex from './components/movieIndex';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -26,12 +26,10 @@ const store = createStore(
   }), devTools, applyMiddleware(middleware)
 )
 
-
-
 const router = (
   <Provider store={store} >
-    <ConnectedRouter history={history} >
-      <Route path="/" component={App}></Route>
+    <ConnectedRouter history={history}>
+      <Route path="/" component={AppContainer}></Route>
     </ConnectedRouter>
   </Provider>
 )
