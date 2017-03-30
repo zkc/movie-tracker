@@ -17,12 +17,12 @@ export default class MovieIndex extends Component {
   };
 
   render() {
-      const movies = this.props.movies.map((movie, index) => {
-        return <MovieCard data={ movie } key={ index }/>
-      });
+    const movies = this.props.movies.map((movie, index) => {
+      return <MovieCard data={ movie } key={ index }/>
+    });
     return (
       <div>
-        { movies }
+       { movies }
       </div>
     )
   }
