@@ -14,8 +14,11 @@ class Header extends Component {
     return (
       <header>
         <NavLink to="/favorites">Favorites</NavLink>
-        <h1>Movie Tracker</h1>
-        <input className="search-input" type="text" placeholder="Search Movies" value={this.state.searchInput} onChange={(e) => this.setState({searchInput: e.target.value})}/>
+        <NavLink to="/"><h1>Movie Tracker</h1></NavLink>
+        <input className="search-input"
+               type="text" placeholder="Search Movies"
+               value={this.state.searchInput}
+               onChange={(e) => this.setState({ searchInput: e.target.value })}/>
         <NavLink to="/login">Sign In</NavLink>
       </header>
     )
