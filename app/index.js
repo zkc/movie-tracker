@@ -11,7 +11,7 @@ import createHistory from 'history/createBrowserHistory'
 // import * as reducers from '../reducers'
 import { movies } from './reducers/movieReducer.js'
 import AppContainer from './containers/AppContainer';
-import MovieIndex from './components/movieIndex';
+import MovieIndex from './components/MovieIndex';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
