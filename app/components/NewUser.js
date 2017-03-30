@@ -7,7 +7,8 @@ export default class NewUser extends Component {
     this.state = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   }
 
@@ -17,9 +18,8 @@ export default class NewUser extends Component {
 
   createUser(e) {
     e.preventDefault();
-    const { signIn, signInFailed } = this.props;
+    const { signIn, history } = this.props;
     const body = JSON.stringify(this.state);
-    console.log(body);
 
     fetch('http://localhost:3000/api/users/new', {
       method: 'POST',
@@ -27,24 +27,28 @@ export default class NewUser extends Component {
       body
       })
       .then(response => {
-        console.log(response);
       if (!response.ok) {
-        this.setState({ error: 'Invalid Credentials' })
+        this.setState({ error: 'Error with sign up' })
+        throw new Error(this.state.error)
       }
       else {
-        response.json().then(user => console.log(user))
-        // redirect??
+        response.json().then(user => {
+          console.log(user)
+        })
+        history.push('/login')
       }
       })
       .catch(error => {
-      signInFailed(error);
+        console.log(error)
       })
   }
 
   render() {
+    const { error } = this.state
     return(
       <div>
         <p>Create your MovieTracker profile!</p>
+        { error && <p>{error}</p> }
         <form>
           <input name="name" required type="name" placeholder="Name" onChange={ (e) => this.handleChange(e) }/>
           <input name="email" required type="email" placeholder="Email" onChange={ (e) => this.handleChange(e) }/>
