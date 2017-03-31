@@ -22,9 +22,9 @@ export default class MovieIndex extends Component {
       return <MovieCardContainer history={ history } data={ movie } key={ index }/>
     });
     return (
-      <div>
+      <section className="movie-container">
        { movies }
-      </div>
+      </section>
     )
   }
 };

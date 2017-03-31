@@ -38,10 +38,10 @@ export default class Login extends Component {
 
   render() {
     return(
-      <div>
+      <div className="login">
         <form>
           { this.state.error && <p className="errorMessage">{ this.state.error }</p>}
-          <input
+          <input className="email"
             type="email"
             name="email"
             value={this.state.email}
@@ -49,7 +49,7 @@ export default class Login extends Component {
             placeholder="Email"
             required
             />
-          <input
+          <input className="password"
             type="password"
             name="email"
             value={this.state.password}
@@ -58,9 +58,9 @@ export default class Login extends Component {
             placeholder="Password"
             required
             />
-          <button onClick={ (e) => this.login(e) }>Submit</button>
+          <button className="sign-in-btn"onClick={ (e) => this.login(e) }>Sign in</button>
         </form>
-        <Link to="/new-user">Create an account</Link>
+        <Link to="/new-user" className="create-account">Create an account</Link>
       </div>
 
     )

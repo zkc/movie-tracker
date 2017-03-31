@@ -13,14 +13,13 @@ class Header extends Component {
     const { email, name } = this.props.user;
     return (
       <header>
-        <NavLink to="/favorites">Favorites</NavLink>
         <NavLink to="/"><h1>Movie Tracker</h1></NavLink>
-        { email && <p>Welcome, { name }</p>}
-        <input className="search-input"
-               type="text" placeholder="Search Movies"
-               value={this.state.searchInput}
-               onChange={(e) => this.setState({ searchInput: e.target.value })}/>
-        { !email && <NavLink to="/login">Sign In</NavLink> }
+        <div className="user-info">
+        { email && <p>Welcome, { name }</p> }
+        { email && <NavLink to="/favorites">Favorites</NavLink> }
+        </div>
+        { !email && <NavLink className="sign-in" activeClassName="active" to="/login">Sign in</NavLink> }
+        { email && <NavLink className="sign-in" activeClassName="active" to="/" onClick={() => this.props.signOut()}>Sign out</NavLink> }
       </header>
     )
   }
