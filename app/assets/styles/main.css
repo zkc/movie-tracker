@@ -1,7 +1,12 @@
-#main h1 {
-  background-color: blue;
-}
 
-#main {
-  text-align: center;
+@import './login.css';
+@import './movie-index.css';
+@import './header.css';
+@import url('https://fonts.googleapis.com/css?family=Codystar|Piedra|Open+Sans');
+
+body {
+  margin: 0;
+  background: #2b2b2b;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
 }
