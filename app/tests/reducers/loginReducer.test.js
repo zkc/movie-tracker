@@ -1,8 +1,6 @@
 import { user } from '../../reducers/loginReducer.js';
 
-const initialState = {
-  user: {}
-}
+const initialState = {}
 
 describe('login reducer', () => {
 
