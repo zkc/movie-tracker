@@ -15,7 +15,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { movies } = this.props;
+    const { movies, favorites } = this.props;
     return (
       <div>
         <HeaderContainer />
@@ -28,10 +28,17 @@ export default class App extends Component {
         <Route exact path="/login" component={ LoginContainer }></Route>
         <Route exact path="/new-user" component={ NewUserContainer }></Route>
         <Route exact path="/favorites" component={ FavoriteContainer }></Route>
+        <Route path="/favorite/:id" render={ ({ match }) =>  {
+          const movie = favorites.find(movie => movie.id === parseInt(match.params.id))
+          return <SingleMovie movie={movie} />
+        }}>
+        </Route>
       </div>
     )
   }
 }
+
+
 
 // movie display component
 // header with login/user info
