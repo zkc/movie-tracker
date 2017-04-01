@@ -3,17 +3,28 @@ import { Link } from 'react-router-dom';
 
 
 class MovieCard extends Component {
-
   saveFav(movieStuff) {
     const { history } = this.props
-    fetch('http://localhost:3000/api/users/favorites/new', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(movieStuff)
-    }).then(response => {
-      if(!response.ok) {
-        history.push('/login')
-      }
+    if (!this.props.favorites.find(fav => movieStuff.movie_id === fav.movie_id)) {
+      fetch('http://localhost:3000/api/users/favorites/new', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(movieStuff)
+      }).then(response => {
+        if(!response.ok) {
+          history.push('/login')
+        }
+      })
+    }
+  }
+
+  getAllFavs(id) {
+    fetch(`http://localhost:3000/api/users/${id}/favorites`)
+    .then(response => {
+      return response.json()
+    })
+    .then(returned => {
+      this.props.addFavs(returned.data)
     })
   }
 
@@ -35,8 +46,11 @@ class MovieCard extends Component {
     return (
       <div className="movie-card">
         <img src="../assets/" />
-        <button className="add-favorite" onClick={() => this.saveFav(
-          {movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id})}>Favorite</button>
+        <button className="add-favorite" onClick={() => {
+          this.saveFav({movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id});
+          this.getAllFavs(user.id)
+          }
+        }>Favorite</button>
         { user.email ?
         <Link to={`${path}/${id}`}>
         <img src={baseURL + poster_path}/>

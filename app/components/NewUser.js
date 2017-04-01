@@ -28,13 +28,10 @@ export default class NewUser extends Component {
       })
       .then(response => {
       if (!response.ok) {
-        this.setState({ error: 'Error with sign up' })
+        this.setState({ error: 'Email has already been used' })
         throw new Error(this.state.error)
       }
       else {
-        response.json().then(user => {
-          console.log(user)
-        })
         history.push('/login')
       }
       })

@@ -1,4 +1,4 @@
-import MovieCard from '../components/MovieCard.js';
+import SingleMovie from '../components/SingleMovie.js';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions.js';
 
@@ -8,10 +8,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addFavs: (movies) => {
-      dispatch(actions.addFavs(movies))
+    removeFav: (movie_id) => {
+      dispatch(actions.removeFav(movie_id))
     }
   }
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
+export default connect(mapStateToProps, mapDispatchToProps)(SingleMovie);

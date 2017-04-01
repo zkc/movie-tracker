@@ -1,9 +1,23 @@
 import React from 'react';
 import MovieCard from './MovieCard';
+import { Route } from 'react-router-dom';
 
-const SingleMovie = ({ movie }) => {
+const removeFromMrElephant = (user_id, movie_id, history) => {
+  fetch(`http://localhost:3000/api/users/${user_id}/favorites/${movie_id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({user_id, movie_id})
+  }).then(response => {
+    if(response.ok) {
+      history.push('/favorites')
+    }
+  })
+}
+
+const SingleMovie = ({ movie, removeFav, user, history}) => {
   const baseURL = 'https://image.tmdb.org/t/p/w300';
-  const { poster_path, title, id, overview, release_date, vote_average } = movie;
+  let { poster_path, title, overview, release_date, vote_average, movie_id, id} = movie;
+  if (movie_id === undefined) {movie_id = id}
     return (
       <article>
         <img src={baseURL + poster_path}/>
@@ -12,6 +26,7 @@ const SingleMovie = ({ movie }) => {
           <p>{ overview }</p>
           <p>Release date: { release_date }</p>
           <p>Rating: { vote_average } / 10</p>
+          <button onClick={ () => removeFromMrElephant(user.id, movie_id, history) }>Remove Favorite</button>
         </div>
       </article>
     )
