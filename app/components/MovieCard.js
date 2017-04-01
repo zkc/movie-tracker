@@ -18,14 +18,27 @@ class MovieCard extends Component {
   }
 
   render () {
-    const { data, user } = this.props
+    const { data, user, router } = this.props
     const { id, title, poster_path, release_date, vote_average, overview } = data
     const baseURL = 'https://image.tmdb.org/t/p/w300';
+    let path = '';
+    switch (router.location.pathname) {
+      case '/':
+        path = '/movie'
+        break;
+      case '/favorites':
+        path = '/favorite'
+        break;
+      default:
+        path = '/';
+    }
     return (
       <div className="movie-card">
-        <button className="add-favorite" onClick={() => this.saveFav({movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id})}>Favorite</button>
+        <img src="../assets/" />
+        <button className="add-favorite" onClick={() => this.saveFav(
+          {movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id})}>Favorite</button>
         { user.email ?
-        <Link to={`/movie/${id}`}>
+        <Link to={`${path}/${id}`}>
         <img src={baseURL + poster_path}/>
         </Link> :
         <Link to={'/login'}>
