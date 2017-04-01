@@ -25,6 +25,13 @@ export const signOut = () => {
   }
 };
 
+export const removeFav = (movie_id) => {
+  return {
+    type: 'REMOVE_FAVORTIES',
+    movie_id
+  }
+};
+
 export const signInFailed = (error) => {
   return {
     type: 'SIGN_IN_FAILED',
