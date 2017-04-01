@@ -5,6 +5,13 @@ export const addMovies = (movies) => {
   }
 };
 
+export const addFavs = (favorites) => {
+  return {
+    type: 'ADD_FAVORTIES',
+    favorites
+  }
+}
+
 export const signIn = (user) => {
   return {
     type: 'SIGN_IN',
