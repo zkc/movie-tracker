@@ -18,7 +18,7 @@ class Header extends Component {
         { email && <p>Welcome, { name }</p> }
         { email && <NavLink to="/favorites">Favorites</NavLink> }
         </div>
-        { !email && <NavLink className="sign-in" activeClassName="active" to="/login">Sign in</NavLink> }
+        { !email && <NavLink className="sign-in" activeClassName="active" to="/login">Sign in <img className="arrow" src="../assets/styles/images/arrow-double.svg"/></NavLink> }
         { email && <NavLink className="sign-in" activeClassName="active" to="/" onClick={() => this.props.signOut()}>Sign out</NavLink> }
       </header>
     )

@@ -7,6 +7,10 @@ export default class MovieIndex extends Component {
   }
 
   componentDidMount(){
+    !this.props.movies.length ? this.getMovies() : null;
+  };
+
+  getMovies() {
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=27e338799cd4f5b4a3f2f72f5ec21881')
       .then(response => {
         return response.json()
@@ -14,7 +18,7 @@ export default class MovieIndex extends Component {
       .then(json => {
         this.props.addMovies(json.results)
       })
-  };
+  }
 
   render() {
     const { history } = this.props
