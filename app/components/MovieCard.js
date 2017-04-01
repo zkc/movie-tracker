@@ -18,6 +18,16 @@ class MovieCard extends Component {
     }
   }
 
+  getAllFavs(id) {
+    fetch(`http://localhost:3000/api/users/${id}/favorites`)
+    .then(response => {
+      return response.json()
+    })
+    .then(returned => {
+      this.props.addFavs(returned.data)
+    })
+  }
+
   render () {
     const { data, user, router } = this.props
     const { id, title, poster_path, release_date, vote_average, overview } = data
@@ -36,8 +46,11 @@ class MovieCard extends Component {
     return (
       <div className="movie-card">
         <img src="../assets/" />
-        <button className="add-favorite" onClick={() => this.saveFav(
-          {movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id})}>Favorite</button>
+        <button className="add-favorite" onClick={() => {
+          this.saveFav({movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id});
+          this.getAllFavs(user.id)
+          }
+        }>Favorite</button>
         { user.email ?
         <Link to={`${path}/${id}`}>
         <img src={baseURL + poster_path}/>

@@ -16,7 +16,8 @@ const removeFromMrElephant = (user_id, movie_id, history) => {
 
 const SingleMovie = ({ movie, removeFav, user, history}) => {
   const baseURL = 'https://image.tmdb.org/t/p/w300';
-  const { poster_path, title, overview, release_date, vote_average, movie_id} = movie;
+  let { poster_path, title, overview, release_date, vote_average, movie_id, id} = movie;
+  if (movie_id === undefined) {movie_id = id}
     return (
       <article>
         <img src={baseURL + poster_path}/>
