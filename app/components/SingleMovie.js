@@ -9,7 +9,6 @@ const removeFromMrElephant = (user_id, movie_id, history) => {
     body: JSON.stringify({user_id, movie_id})
   }).then(response => {
     if(response.ok) {
-      console.log(response)
       history.push('/favorites')
     }
   })
