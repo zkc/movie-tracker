@@ -32,6 +32,8 @@ a {
 }
 
 .sign-in {
+  display: flex;
+  align-items: center;
   padding: 8px 16px;
   background-color: #eee;
   border-radius: 3px;
@@ -43,4 +45,12 @@ a {
 .sign-in.active {
   background-color: #800404;
   color: #eee;
+}
+
+.arrow {
+  display: block;
+  margin: 0 0 0 5px;
+  height: 15px;
+  width: 15px;
+  transform: rotate(-90deg);
 }
