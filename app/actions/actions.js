@@ -7,7 +7,7 @@ export const addMovies = (movies) => {
 
 export const addFavs = (favorites) => {
   return {
-    type: 'ADD_FAVORTIES',
+    type: 'ADD_FAVORITES',
     favorites
   }
 }
@@ -25,12 +25,12 @@ export const signOut = () => {
   }
 };
 
-export const removeFav = (movie_id) => {
-  return {
-    type: 'REMOVE_FAVORTIES',
-    movie_id
-  }
-};
+// export const removeFav = (movie_id) => {
+//   return {
+//     type: 'REMOVE_FAVORTIES',
+//     movie_id
+//   }
+// };
 
 export const signInFailed = (error) => {
   return {
