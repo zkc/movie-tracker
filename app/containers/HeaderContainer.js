@@ -6,4 +6,12 @@ const mapStateToProps = (state)=>  {
   return state
 };
 
-export default connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => {
+      dispatch(actions.signOut)
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

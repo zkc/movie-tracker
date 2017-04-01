@@ -1,0 +1,29 @@
+
+.movie-container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 100px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  border-radius: 3px;
+}
+
+
+.add-favorite {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #50af4b;
+  border-style: none;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+}

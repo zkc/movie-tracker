@@ -10,8 +10,8 @@ const mapStateToProps = (state)=>  {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addMovies: (movies) => {
-      dispatch(actions.addMovies(movies))
+    addFavs: (favorites) => {
+      dispatch(actions.addFavs(favorites))
     }
   }
 };

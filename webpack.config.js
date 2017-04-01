@@ -21,7 +21,9 @@ module.exports = {
        query: {
          presets: ['es2015', 'react']
        }
-     }]
+     },
+     { test: /\.css$/, loader: "style!css" },
+     { test: /\.svg$/, loader: 'svg-url-loader'}]
    },
   resolve: {
     extensions: ['', '.js', '.jsx', '.json', '.scss', '.css']

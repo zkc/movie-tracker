@@ -1,0 +1,52 @@
+
+.login {
+  position: absolute;
+  top: 150px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 20px;
+  width: 80%;
+  background: linear-gradient(to bottom, #eee 0%, #d2cfcf 100%);
+  border-radius: 3px;
+  box-shadow: 0px 0px 1px 0px #eee;
+  text-align: center
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 15px 5px;
+  margin: 10px 0;
+  border-radius: 3px;
+  border-style: none;
+  box-shadow: inset 0px 0px 1px 0px #333;
+  font-size: 1em;
+}
+
+/*::-webkit-input-placeholder {
+  font-size: 1.2em;
+}*/
+
+.sign-in-btn {
+  display: block;
+  margin: 15px 0;
+  padding: 10px 0;
+  background-color: #9e0b0b;
+  border-style: none;
+  border-bottom: 2px solid #800404;
+  border-radius: 3px;
+  color: #eee;
+  cursor: pointer;
+  font-family: 'Codystar', 'Open Sans', sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.create-account {
+  color: #333;
+  font-size: .8em;
+}
