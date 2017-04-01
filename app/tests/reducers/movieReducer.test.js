@@ -1,8 +1,6 @@
 import { movies } from '../../reducers/movieReducer.js';
 
-const initialState = {
-  movies: []
-}
+const initialState =[]
 
 describe('movie reducer', () => {
 
