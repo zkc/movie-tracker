@@ -16,15 +16,13 @@ class Favorites extends Component {
       return response.json()
     })
     .then(returned => {
-      this.props.addMovies(returned.data)
-      // this.setState({ favList: returned.data })
+      console.log(returned);
+      this.props.addFavs(returned.data)
     })
-    //call api,
-    // fetch('')
-    //end promise by setting state
   }
 
   componentDidMount() {
+    console.log('favorites component');
     const { user, history} = this.props
     if(!user.name){
       history.push('/login')
@@ -35,14 +33,14 @@ class Favorites extends Component {
 }
 
   render() {
-    const { movies } = this.props
+    const { favorites } = this.props
       return (
         <div>
-        {movies.map((movie, i) => <MovieCardContainer data={movie} key={i} />)}
+        {favorites.map((movie, i) => <MovieCardContainer data={movie} key={i} />)}
         </div>
       )
     }
+  }
 
-}
 
 export default Favorites
