@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom';
 
 
 class MovieCard extends Component {
-
   saveFav(movieStuff) {
     const { history } = this.props
-    fetch('http://localhost:3000/api/users/favorites/new', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(movieStuff)
-    }).then(response => {
-      if(!response.ok) {
-        history.push('/login')
-      }
-    })
+    if (!this.props.favorites.find(fav => movieStuff.movie_id === fav.movie_id)) {
+      fetch('http://localhost:3000/api/users/favorites/new', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(movieStuff)
+      }).then(response => {
+        if(!response.ok) {
+          history.push('/login')
+        }
+      })
+    }
   }
 
   render () {

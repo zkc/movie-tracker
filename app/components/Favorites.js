@@ -16,7 +16,7 @@ class Favorites extends Component {
       return response.json()
     })
     .then(returned => {
-      console.log(returned);
+      // console.log(returned);
       this.props.addFavs(returned.data)
     })
   }
