@@ -29,18 +29,22 @@ a {
 .sign-in-wrap {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin: 8px 0 5px;
 }
 
 .sign-in {
   margin-left: auto;
+  padding: 3px 5px;
   display: flex;
   align-items: center;
-  color: #eee;
+  background-color: #eee;
+  border-radius: 3px;
+  color: #b00f0f;
   cursor: pointer;
   font-size: .75em;
   font-family: 'Codystar', sans-serif;
+  font-weight: 700;
 }
 
 .arrow {
@@ -74,12 +78,10 @@ a {
 }
 
 .view-favorites a {
-  padding: 3px 5px;
   display: flex;
   align-items: center;
-  justify-content: center;
   color: #eee;
-  font-size: .85em;
+  font-size: .75em;
   opacity: .9;
 }
 
