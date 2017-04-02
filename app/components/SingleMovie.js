@@ -17,13 +17,14 @@ import MovieCard from './MovieCard';
 const SingleMovie = ({ movie, removeFav, user, history, trailers }) => {
   const baseURL = 'https://image.tmdb.org/t/p/w300';
   let { poster_path, title, overview, release_date, vote_average, movie_id, id} = movie;
+  console.log(release_date);
   if (movie_id === undefined) {movie_id = id}
 
   return (
     <article className="movie-details">
       <div className="movie-display">
-      <img src={baseURL + poster_path}/>
-      <iframe src={`https://www.youtube.com/embed/${trailers.key}`} frameBorder="5" allowFullScreen></iframe>
+      <img className="single-movie-poster" src={baseURL + poster_path}/>
+      <iframe className="movie-trailer" src={`https://www.youtube.com/embed/${trailers.key}`} frameBorder="0" allowFullScreen></iframe>
       </div>
       <div className="movie-info">
       <h3>{ title }</h3>
