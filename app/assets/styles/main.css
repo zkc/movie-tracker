@@ -2,6 +2,7 @@
 @import './login.css';
 @import './movie-index.css';
 @import './header.css';
+@import './single-movie.css';
 @import url('https://fonts.googleapis.com/css?family=Codystar|Piedra|Open+Sans');
 
 body {
