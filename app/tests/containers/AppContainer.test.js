@@ -30,10 +30,10 @@ const setup = () => {
 };
 
 
-describe('AppContainer', () => {
-  const { Container, Component } = setup();
-
-  xit('should pass props from state', () => {
-    expect(Component.props()).toBe({})
-  });
-});
+// describe('AppContainer', () => {
+//   const { Container, Component } = setup();
+//
+//   xit('should pass props from state', () => {
+//     expect(Component.props()).toBe({})
+//   });
+// });

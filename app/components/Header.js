@@ -10,17 +10,21 @@ class Header extends Component {
   }
 
   render() {
-    const { email, name } = this.props.user;
-    return (
-      <header>
-        <NavLink to="/"><h1>Movie Tracker</h1></NavLink>
-        <div className="user-info">
-        { email && <p>Welcome, { name }</p> }
-        { email && <NavLink to="/favorites">Favorites</NavLink> }
+  const { email, name, } = this.props.user;
+  return (
+    <header>
+      <div className="sign-in-wrap">
+        <div className="view-favorites">
+          { email && <p className="welcome"><img className="profile" src="../assets/styles/images/user1.svg" />Welcome, { name }</p> }
+          { email && <NavLink to="/favorites"><img className="star" src="../assets/styles/images/Star_icon.svg" />View Favorites</NavLink> }
         </div>
-        { !email && <NavLink className="sign-in" activeClassName="active" to="/login">Sign in <img className="arrow" src="../assets/styles/images/arrow-double.svg"/></NavLink> }
-        { email && <NavLink className="sign-in" activeClassName="active" to="/" onClick={() => this.props.signOut()}>Sign out</NavLink> }
-      </header>
+        { !email && <NavLink className="sign-in" to="/login">Sign in<img className="arrow" src="../assets/styles/images/arrow-double.svg"/></NavLink> }
+        { email && <NavLink className="sign-in" to="/" onClick={() => this.props.signOut()}>Sign out<img className="arrow" src="../assets/styles/images/arrow-double.svg"/></NavLink> }
+      </div>
+      <NavLink to="/"><h1>Movie Tracker</h1></NavLink>
+
+
+    </header>
     )
   }
 }

@@ -18,6 +18,17 @@ class MovieCard extends Component {
     }
   }
 
+  fetchTrailers(id) {
+    fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=27e338799cd4f5b4a3f2f72f5ec21881&language=en-US`)
+      .then(response => {
+        return response.json()
+      })
+      .then(json => {
+        const trailer = json.results.filter(trailer => trailer.type === 'Trailer' );
+        this.props.addTrailers(trailer[0])
+      })
+  }
+
   getAllFavs(id) {
     fetch(`http://localhost:3000/api/users/${id}/favorites`)
     .then(response => {
@@ -45,19 +56,20 @@ class MovieCard extends Component {
     }
     return (
       <div className="movie-card">
-        <img src="../assets/" />
-        <button className="add-favorite" onClick={() => {
-          this.saveFav({movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id});
-          this.getAllFavs(user.id)
-          }
-        }>Favorite</button>
         { user.email ?
-        <Link to={`${path}/${id}`}>
-        <img src={baseURL + poster_path}/>
+        <Link to={`${path}/${id}`} onClick={ () => this.fetchTrailers(id) }>
+        <img className="movie-poster" src={baseURL + poster_path}/>
         </Link> :
         <Link to={'/login'}>
-        <img src={baseURL + poster_path}/>
+        <img className="movie-poster" src={baseURL + poster_path}/>
         </Link> }
+        <p className="card-footer"><span>Viewer rating: { vote_average } / 10</span>
+          <button className="add-favorite" onClick={() => {
+          this.saveFav({movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id});
+          this.getAllFavs(user.id)}
+        }><img className="heart" src="../assets/styles/images/star-fav.svg"/>
+          </button>
+        </p>
       </div>
     )
   }
