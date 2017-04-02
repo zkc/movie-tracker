@@ -1,9 +1,8 @@
-
 const initialState = {
   id: null,
   name: null,
   email: ''
-}
+};
 
 export const user = (state = initialState, action) => {
   switch(action.type){
@@ -13,5 +12,5 @@ export const user = (state = initialState, action) => {
       return initialState;
     default:
       return state;
-  }
+  };
 };

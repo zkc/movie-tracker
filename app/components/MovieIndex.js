@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import MovieCardContainer from '../containers/MovieCardContainer';
 
 export default class MovieIndex extends Component {
-  constructor() {
-    super();
-  }
-
-  componentDidMount(){
-    !this.props.movies.length ? this.getMovies() : null;
-  };
 
   getMovies() {
     fetch('https://api.themoviedb.org/3/movie/popular?api_key=27e338799cd4f5b4a3f2f72f5ec21881')
@@ -18,7 +11,7 @@ export default class MovieIndex extends Component {
       .then(json => {
         this.props.addMovies(json.results)
       })
-  }
+  };
 
   render() {
     const { history } = this.props
@@ -30,5 +23,9 @@ export default class MovieIndex extends Component {
        { movies }
       </section>
     )
-  }
+  };
+
+  componentDidMount(){
+    !this.props.movies.length ? this.getMovies() : null;
+  };
 };

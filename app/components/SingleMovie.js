@@ -1,23 +1,22 @@
 import React from 'react';
 import MovieCard from './MovieCard';
 
-  const removeFromMrElephant = (user_id, movie_id, history) => {
-    fetch(`http://localhost:3000/api/users/${user_id}/favorites/${movie_id}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({user_id, movie_id})
-    }).then(response => {
-      if(response.ok) {
-        history.push('/favorites')
-      }
-    })
-  }
+const removeFromMrElephant = (user_id, movie_id, history) => {
+  fetch(`http://localhost:3000/api/users/${user_id}/favorites/${movie_id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({user_id, movie_id})
+  }).then(response => {
+    if(response.ok) {
+      history.push('/favorites')
+    }
+  })
+};
 
 
 const SingleMovie = ({ movie, removeFav, user, history, trailers }) => {
   const baseURL = 'https://image.tmdb.org/t/p/w300';
   let { poster_path, title, overview, release_date, vote_average, movie_id, id} = movie;
-  console.log(release_date);
   if (movie_id === undefined) {movie_id = id}
 
   return (
@@ -35,6 +34,6 @@ const SingleMovie = ({ movie, removeFav, user, history, trailers }) => {
       </div>
     </article>
   )
-}
+};
 
 export default SingleMovie;

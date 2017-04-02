@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
 
 import HeaderContainer from '../containers/HeaderContainer.js';
@@ -9,38 +9,26 @@ import NewUserContainer from '../containers/NewUserContainer.js';
 import FavoriteContainer from '../containers/FavoriteContainer.js';
 
 
-export default class App extends Component {
-  constructor() {
-    super();
-  }
+const App = ({ movies, favorites, history }) => {
+  return (
+    <div>
+      <HeaderContainer />
+      <Route exact path="/" component={ MovieIndexContainer }></Route>
+      <Route path="/movie/:id" render={ ({ match }) =>  {
+        const movie = movies.find(movie => movie.id === parseInt(match.params.id))
+        return <SingleMovieContainer movie={movie} history={history}  />
+      }}>
+      </Route>
+      <Route exact path="/login" component={ LoginContainer }></Route>
+      <Route exact path="/new-user" component={ NewUserContainer }></Route>
+      <Route exact path="/favorites" component={ FavoriteContainer }></Route>
+      <Route path="/favorite/:id" render={ ({ match }) =>  {
+        const movie = favorites.find(movie => movie.movie_id === parseInt(match.params.id))
+        return <SingleMovieContainer movie={movie} history={history} />
+      }}>
+      </Route>
+    </div>
+  )
+};
 
-  render() {
-    const { movies, favorites, history } = this.props;
-    return (
-      <div>
-        <HeaderContainer />
-        <Route exact path="/" component={ MovieIndexContainer }></Route>
-        <Route path="/movie/:id" render={ ({ match }) =>  {
-          const movie = movies.find(movie => movie.id === parseInt(match.params.id))
-          return <SingleMovieContainer movie={movie} history={history}  />
-        }}>
-        </Route>
-        <Route exact path="/login" component={ LoginContainer }></Route>
-        <Route exact path="/new-user" component={ NewUserContainer }></Route>
-        <Route exact path="/favorites" component={ FavoriteContainer }></Route>
-        <Route path="/favorite/:id" render={ ({ match }) =>  {
-          const movie = favorites.find(movie => movie.id === parseInt(match.params.id))
-          return <SingleMovieContainer movie={movie} history={history} />
-        }}>
-        </Route>
-      </div>
-    )
-  }
-}
-
-
-
-// movie display component
-// header with login/user info
-// search bar - search without or with login -- but it should prompt you to login when you try to favorite something
-// login component where you login - sign in button
+export default App;

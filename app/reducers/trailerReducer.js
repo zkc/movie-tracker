@@ -4,5 +4,5 @@ export const trailers = (state = {}, action) => {
       return action.trailers;
     default:
       return state;
-  }
+  };
 };
