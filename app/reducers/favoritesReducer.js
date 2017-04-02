@@ -1,6 +1,6 @@
 export const favorites = (state = [], action) => {
   switch(action.type){
-    case 'ADD_FAVORTIES':
+    case 'ADD_FAVORITES':
       return action.favorites;
     case 'REMOVE_FAVORTIES':
       return state.filter(movie => movie.movie_id != action.movie_id)
