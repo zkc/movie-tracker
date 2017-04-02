@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import FavButton from './FavButtonTest'
 
 
 class MovieCard extends Component {
@@ -29,8 +30,8 @@ class MovieCard extends Component {
   }
 
   render () {
-    const { data, user, router } = this.props
-    const { id, title, poster_path, release_date, vote_average, overview } = data
+    const { data, user, router, favorites } = this.props
+    // const { id, title, poster_path, release_date, vote_average, overview } = data
     const baseURL = 'https://image.tmdb.org/t/p/w300';
     let path = '';
     switch (router.location.pathname) {
@@ -46,18 +47,18 @@ class MovieCard extends Component {
     return (
       <div className="movie-card">
         <img src="../assets/" />
-        <button className="add-favorite" onClick={() => {
-          this.saveFav({movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id});
-          this.getAllFavs(user.id)
-          }
-        }>Favorite</button>
-        { user.email ?
-        <Link to={`${path}/${id}`}>
-        <img src={baseURL + poster_path}/>
-        </Link> :
-        <Link to={'/login'}>
-        <img src={baseURL + poster_path}/>
-        </Link> }
+        {
+          user.email
+          ?
+          <Link to={`${path}/${data.id}`}>
+            <img src={baseURL + data.poster_path}/>
+          </Link>
+          :
+          <Link to={'/login'}>
+            <img src={baseURL + data.poster_path}/>
+          </Link>
+        }
+        <FavButton {...this.props} />
       </div>
     )
   }
@@ -66,3 +67,10 @@ class MovieCard extends Component {
 
 
 export default MovieCard;
+
+
+// <button className="add-favorite" onClick={() => {
+//   this.saveFav({movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id});
+//   this.getAllFavs(user.id)
+// }
+// }>Favorite</button>
