@@ -66,3 +66,9 @@ export default class Login extends Component {
     )
   }
 }
+
+Login.propTypes = {
+  email: React.PropTypes.string,
+  password: React.PropTypes.string,
+  error: React.PropTypes.string
+};
