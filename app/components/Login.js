@@ -51,7 +51,7 @@ export default class Login extends Component {
             />
           <input className="password"
             type="password"
-            name="email"
+            name="password"
             value={this.state.password}
             minLength="4"
             onChange={(e) => this.setState({ password: e.target.value })}
