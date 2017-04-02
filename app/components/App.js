@@ -15,7 +15,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { movies, favorites, history } = this.props;
+    const { movies, favorites, history, user } = this.props;
     return (
       <div>
         <HeaderContainer />
@@ -35,6 +35,18 @@ export default class App extends Component {
         </Route>
       </div>
     )
+  }
+
+  componentDidUpdate (prevProps) {
+    if(prevProps.user.id != this.props.user.id) {
+      fetch(`http://localhost:3000/api/users/${this.props.user.id}/favorites`)
+      .then(response => {
+        return response.json()
+      })
+      .then(returned => {
+        this.props.addFavs(returned.data)
+      })
+    }
   }
 }
 

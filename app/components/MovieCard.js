@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import FavButton from './FavButtonTest'
+import FavButtonContainer from '../containers/FavButtonContainer'
 
 
 class MovieCard extends Component {
@@ -58,7 +58,7 @@ class MovieCard extends Component {
             <img src={baseURL + data.poster_path}/>
           </Link>
         }
-        <FavButton {...this.props} />
+        <FavButtonContainer {...this.props} />
       </div>
     )
   }

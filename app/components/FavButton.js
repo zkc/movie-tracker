@@ -1,72 +1,65 @@
 import React, { Component } from 'react';
 
 
-// child of the movieCard and SingleMovie components.
-// adds movie to favorites if not already, removes movie if it is a favorite movie
-// toggles favortie of parrent movie_id
-
-class FavButton extends Component {
-  constructor () {
-    super()
-    console.log(this.props)
-    const { favorites, data } = this.props
-    this.favToggle = favorites.find(fav => data.id === fav.movie_id)
-  }
-  render () {
-    //check if movie_id in props.favorites
-    // if it is, apply .favorited css class
-
-    return (
-      <button className={this.favToggle && 'favorite-true'} onClick={() => toggleFavorites()}> Fav </button>
-    )
-  }
-
-  toggleFavorites () {
-    if (this.favToggle) {
-      //remove from favorites
-      removeFromFavorites()
-    } else {
-      //add to favorites
-      addToFavorites()
+const addToFavorites = (MovieCard) => {
+  const { id, title, poster_path, release_date, vote_average, overview } = MovieCard.data
+  const favMovie = { movie_id: id, user_id: MovieCard.user.id, title, poster_path, release_date, vote_average, overview }
+  console.log(favMovie)
+  fetch('http://localhost:3000/api/users/favorites/new', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(favMovie)
+  }).then(response => {
+    if(!response.ok) {
+      console.log(response);
+      // history.push('/login')
     }
+  })
+}
 
-  }
+const removeFromFavorites = (MovieCard) => {
+  const { user, data } = MovieCard
 
-  addToFavorites () {
-    fetch('http://localhost:3000/api/users/favorites/new', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.props.movie)
-    }).then(response => {
-      if(!response.ok) {
-        console.log('go to login');
-        // history.push('/login')
-      }
-    })
-  }
+  fetch(`http://localhost:3000/api/users/${user.id}/favorites/${data.id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({user_id: user.id, movie_id: data.id})
+  }).then(response => {
+    if(response.ok) {
+      console.log('go to favorites')
+      // history.push('/favorites')
+    }
+  })
 
-  removeFromFavorites () {
-    const { user_id, movie } = this.props
-    const { movie_id } = movie
-    fetch(`http://localhost:3000/api/users/${user_id}/favorites/${movie_id}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({user_id, movie_id})
-    }).then(response => {
-      if(response.ok) {
-        console.log('go to favorites')
-        // history.push('/favorites')
-      }
-    })
-  }
 }
 
 
+const toggleFav = (MovieCard) => {
+  if(MovieCard.user.email) {
+    console.log(MovieCard);
+    let movie_id = MovieCard.data.id
+    if(MovieCard.router.location == '/favorites') {
+      Object.assign(MovieCard, {data: {movie_id}})
+    }
+    if (MovieCard.favorites.find(fav => movie_id === fav.movie_id)) {
+      console.log('un-fav me')
+      removeFromFavorites(MovieCard)
+    } else {
+      console.log('fav me')
+      addToFavorites(MovieCard)
 
-// FavButton.propTypes = {
-//   movie: React.PropTypes.object,
-//   favorites: React.PropTypes.array,
-//   user_id: React.PropTypes.number
-// };
+    }
+  } else {
+    MovieCard.history.push('/login')
+  }
 
-export default FavButton;
+}
+
+const FavButton = (MovieCard) => {
+  return (
+    <button onClick={() => toggleFav(MovieCard)} >Fav </button>
+  )
+}
+
+
+export default FavButton
