@@ -46,35 +46,34 @@ describe('Header Component', () => {
   it('should render 1 Movie Tracker NavLink when no user is signed in with a path of /', () => {
     const { wrapper } = setup()
 
-    expect(wrapper.find('NavLink').first().props().children.props).toEqual({"children": "Movie Tracker"});
-    expect(wrapper.find('NavLink').first().props().to).toEqual('/');
+    expect(wrapper.find('NavLink').last().props().children.props).toEqual({"children": "Movie Tracker"});
+    expect(wrapper.find('NavLink').last().props().to).toEqual('/');
   });
 
   it('should render 1 Sign In NavLink when no user is signed in with a path of /login', () => {
     const { wrapper } = setup()
 
-    expect(wrapper.find('NavLink').last().props().children[0]).toEqual('Sign In');
-    expect(wrapper.find('NavLink').last().props().to).toEqual('/login');
+    expect(wrapper.find('NavLink').first().props().children[0]).toEqual('Sign In');
+    expect(wrapper.find('NavLink').first().props().to).toEqual('/login');
   });
 
   it('should render 1 Sign Out NavLink when a user is signed in with a path of /', () => {
     const { Wrapper } = setUp()
 
-    expect(Wrapper.find('NavLink').last().props().children).toEqual('Sign Out');
-    expect(Wrapper.find('NavLink').last().props().to).toEqual('/');
+    expect(Wrapper.find('.sign-in').props().children[0]).toEqual('Sign Out');
+    expect(Wrapper.find('.sign-in').props().to).toEqual('/');
   });
 
   it('should render a p tag with the users name when signed in', () => {
     const { Wrapper } = setUp()
 
     expect(Wrapper.find('p').text()).toEqual('Welcome, Charlie');
-    expect(Wrapper.find('NavLink').last().props().to).toEqual('/');
   });
 
   it('should render a favorites NavLink when signed in', () => {
     const { Wrapper } = setUp()
 
-    expect(Wrapper.find('.favorites-button').props().children).toEqual('Favorites');
-    expect(Wrapper.find('.favorites-button').props().to).toEqual('/favorites');
+    expect(Wrapper.find('NavLink').first().props().children[1]).toEqual('View Favorites');
+    expect(Wrapper.find('NavLink').first().props().to).toEqual('/favorites');
   });
 });
