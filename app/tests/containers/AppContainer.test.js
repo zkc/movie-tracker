@@ -29,6 +29,7 @@ const setup = () => {
   }
 };
 
+it()
 
 // describe('AppContainer', () => {
 //   const { Container, Component } = setup();
