@@ -38,3 +38,10 @@ export const signInFailed = (error) => {
     error
   }
 };
+
+export const addTrailers = (trailers) => {
+  return {
+    type: 'ADD_TRAILERS',
+    trailers
+  }
+}
