@@ -56,3 +56,10 @@ export default class NewUser extends Component {
     )
   }
 }
+
+NewUser.propTypes = {
+  name: React.PropTypes.string,
+  email: React.PropTypes.string,
+  password: React.PropTypes.string,
+  error: React.PropTypes.string
+};

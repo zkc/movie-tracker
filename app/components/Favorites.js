@@ -5,9 +5,6 @@ import MovieCardContainer from '../containers/MovieCardContainer'
 class Favorites extends Component {
   constructor() {
     super()
-    this.state = {
-      favList: []
-    }
   }
 
   getAllFavs(id) {
