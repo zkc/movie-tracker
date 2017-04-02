@@ -1,8 +1,8 @@
 
 .movie-container {
-  width: 90%;
+  width: 98%;
   margin: 0 auto;
-  padding: 100px 0 0 0;
+  padding: 150px 0 0 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -16,14 +16,40 @@
   border-radius: 3px;
 }
 
+.movie-poster {
+  height: 300px;
+  width: 225px;
+}
 
 .add-favorite {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  background-color: #50af4b;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(221, 189, 24, 1);
   border-style: none;
   border-radius: 2px;
   color: #fff;
   cursor: pointer;
+  padding: 3px;
+}
+
+.star-fav,
+.heart {
+  height: 15px;
+  width: 15px;
+}
+
+.card-footer {
+  margin: -5px 0 0 0;
+  padding: 3px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(221, 189, 24, 1);
+  color: #eee;
+  text-shadow: 1px 1px 1px rgba(40, 40, 40, 0.6);
+}
+
+.card-footer span {
+  display: block;
+  font-size: .8em;
 }

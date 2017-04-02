@@ -10,6 +10,7 @@ import createHistory from 'history/createBrowserHistory'
 
 // import * as reducers from '../reducers'
 import { movies } from './reducers/movieReducer.js'
+import { trailers } from './reducers/trailerReducer.js'
 import { user } from './reducers/loginReducer.js'
 import { favorites } from './reducers/favoritesReducer.js'
 import AppContainer from './containers/AppContainer';
@@ -22,6 +23,7 @@ const middleware = routerMiddleware(history)
 
 const store = createStore(
   combineReducers({
+    trailers,
     movies,
     favorites,
     user,
