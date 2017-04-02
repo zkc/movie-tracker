@@ -1,14 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import fetchMock from 'fetch-mock';
-import { NavLink, Route } from 'react-router-dom';
 
 import Header from '../../components/Header.js';
 
 function setup() {
   const props = {
     user: jest.fn()
-  }
+  };
 
   const wrapper = shallow(<Header {...props} />)
 
@@ -16,7 +14,7 @@ function setup() {
     props,
     wrapper
   }
-}
+};
 
 function setUp() {
   const Props = {
@@ -25,7 +23,7 @@ function setUp() {
       id: 1,
       email: '123@gmail.com'
     }
-  }
+  };
 
   const Wrapper = shallow(<Header {...Props} />)
 
@@ -33,7 +31,7 @@ function setUp() {
     Props,
     Wrapper
   }
-}
+};
 
 describe('Header Component', () => {
 
