@@ -24,8 +24,8 @@ class MovieCard extends Component {
         return response.json()
       })
       .then(json => {
-        const trailer = json.results.filter(trailer => trailer.type === 'Trailer' );
-        this.props.addTrailers(trailer[0])
+        const trailers = json.results.filter(trailer => trailer.type === 'Trailer' );
+        this.props.addTrailers(trailers[0])
       })
   }
 

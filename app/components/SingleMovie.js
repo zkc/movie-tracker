@@ -20,9 +20,11 @@ const SingleMovie = ({ movie, removeFav, user, history, trailers }) => {
   if (movie_id === undefined) {movie_id = id}
 
   return (
-    <article>
+    <article className="movie-details">
+      <div className="movie-display">
       <img src={baseURL + poster_path}/>
       <iframe src={`https://www.youtube.com/embed/${trailers.key}`} frameBorder="5" allowFullScreen></iframe>
+      </div>
       <div className="movie-info">
       <h3>{ title }</h3>
       <p>{ overview }</p>
