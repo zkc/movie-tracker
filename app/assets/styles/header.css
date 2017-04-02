@@ -26,7 +26,7 @@ a {
   text-decoration: none;
 }
 
-.title {
+.sign-in-wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -67,13 +67,13 @@ a {
   width: 15px;
 }
 
-.user-info {
+.view-favorites {
   margin: 0 0 10px 0;
   display: flex;
   flex-direction: column;
 }
 
-.user-info a {
+.view-favorites a {
   padding: 3px 5px;
   display: flex;
   align-items: center;
