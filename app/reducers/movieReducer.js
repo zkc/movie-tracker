@@ -4,5 +4,5 @@ export const movies = (state = [], action) => {
       return action.movies;
     default:
       return state;
-  }
+  };
 };

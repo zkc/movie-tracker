@@ -6,6 +6,5 @@ export const favorites = (state = [], action) => {
       return state.filter(movie => movie.movie_id != action.movie_id)
     default:
       return state;
-  }
-
+  };
 };

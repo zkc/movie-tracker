@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 
-
 export default class Login extends Component {
   constructor() {
     super();
@@ -65,7 +64,7 @@ export default class Login extends Component {
 
     )
   }
-}
+};
 
 Login.propTypes = {
   email: React.PropTypes.string,

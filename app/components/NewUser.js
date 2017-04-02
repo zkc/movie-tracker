@@ -10,11 +10,11 @@ export default class NewUser extends Component {
       password: '',
       error: ''
     }
-  }
+  };
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value })
-  }
+  };
 
   createUser(e) {
     e.preventDefault();
@@ -29,16 +29,12 @@ export default class NewUser extends Component {
       .then(response => {
       if (!response.ok) {
         this.setState({ error: 'Email has already been used' })
-        throw new Error(this.state.error)
       }
       else {
         history.push('/login')
       }
       })
-      .catch(error => {
-        console.log(error)
-      })
-  }
+  };
 
   render() {
     const { error } = this.state
@@ -54,8 +50,8 @@ export default class NewUser extends Component {
         </form>
       </div>
     )
-  }
-}
+  };
+};
 
 NewUser.propTypes = {
   name: React.PropTypes.string,
