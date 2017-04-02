@@ -39,6 +39,7 @@ export default class App extends Component {
 
   componentDidUpdate (prevProps) {
     if(prevProps.user.id != this.props.user.id) {
+      //refresh local favs list. 
       fetch(`http://localhost:3000/api/users/${this.props.user.id}/favorites`)
       .then(response => {
         return response.json()
