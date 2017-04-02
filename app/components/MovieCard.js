@@ -18,6 +18,17 @@ class MovieCard extends Component {
     }
   }
 
+  fetchTrailers(id) {
+    fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=27e338799cd4f5b4a3f2f72f5ec21881&language=en-US`)
+      .then(response => {
+        return response.json()
+      })
+      .then(json => {
+        const trailer = json.results.filter(trailer => trailer.type === 'Trailer' );
+        this.props.addTrailers(trailer[0])
+      })
+  }
+
   getAllFavs(id) {
     fetch(`http://localhost:3000/api/users/${id}/favorites`)
     .then(response => {
@@ -46,7 +57,7 @@ class MovieCard extends Component {
     return (
       <div className="movie-card">
         { user.email ?
-        <Link to={`${path}/${id}`}>
+        <Link to={`${path}/${id}`} onClick={ () => this.fetchTrailers(id) }>
         <img className="movie-poster" src={baseURL + poster_path}/>
         </Link> :
         <Link to={'/login'}>
