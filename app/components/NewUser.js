@@ -16,8 +16,7 @@ export default class NewUser extends Component {
     this.setState({ [e.target.name]: e.target.value })
   };
 
-  createUser(e) {
-    e.preventDefault();
+  createUser() {
     const { signIn, history } = this.props;
     const body = JSON.stringify(this.state);
 
