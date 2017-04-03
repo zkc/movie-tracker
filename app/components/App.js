@@ -14,7 +14,7 @@ const App = ({ movies, favorites, history }) => {
     <div>
       <HeaderContainer />
       <Route exact path="/" component={ MovieIndexContainer }></Route>
-      <Route path="/movie/:id" render={ ({ match }) =>  {
+      <Route path="/moviecard/:id" render={ ({ match }) =>  {
         const movie = movies.find(movie => movie.id === parseInt(match.params.id))
         return <SingleMovieContainer movie={movie} history={history}  />
       }}>
@@ -22,11 +22,6 @@ const App = ({ movies, favorites, history }) => {
       <Route exact path="/login" component={ LoginContainer }></Route>
       <Route exact path="/new-user" component={ NewUserContainer }></Route>
       <Route exact path="/favorites" component={ FavoriteContainer }></Route>
-      <Route path="/favorite/:id" render={ ({ match }) =>  {
-        const movie = favorites.find(movie => movie.movie_id === parseInt(match.params.id))
-        return <SingleMovieContainer movie={movie} history={history} />
-      }}>
-      </Route>
     </div>
   )
 };

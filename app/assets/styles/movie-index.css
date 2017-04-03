@@ -38,6 +38,10 @@
   width: 15px;
 }
 
+.heart-fav {
+  background-color: pink;
+}
+
 .card-footer {
   margin: -5px 0 0 0;
   padding: 3px 5px;

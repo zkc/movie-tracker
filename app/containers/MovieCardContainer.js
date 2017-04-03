@@ -1,20 +1,15 @@
 import MovieCard from '../components/MovieCard.js';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actions.js';
+import { bindActionCreators } from 'redux';
+
+import * as actions from '../actions/thunkActions.js';
 
 const mapStateToProps = (state) => {
   return state;
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    addFavs: (movies) => {
-      dispatch(actions.addFavs(movies))
-    },
-    addTrailers: (trailer) => {
-      dispatch(actions.addTrailers(trailer))
-    }
-  }
+  return bindActionCreators(actions, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
