@@ -40,9 +40,9 @@ describe('SingleMovie', () => {
     const { wrapper } = setup();
 
     expect(wrapper.find('article').length).toBe(1);
-    expect(wrapper.find('img').length).toBe(1);
+    expect(wrapper.find('img').length).toBe(3);
     expect(wrapper.find('iframe').length).toBe(1);
-    expect(wrapper.find('div').length).toBe(2);
+    expect(wrapper.find('div').length).toBe(10);
     expect(wrapper.find('button').length).toBe(1);
   });
 
