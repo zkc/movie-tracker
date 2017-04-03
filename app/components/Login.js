@@ -30,9 +30,6 @@ export default class Login extends Component {
         history.push('/')
       }
     })
-    .catch(error => {
-      signInFailed(error);
-    })
   }
 
   render() {

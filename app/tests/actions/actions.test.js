@@ -45,14 +45,4 @@ describe('Actions', () => {
     expect(createdAction[0]).toEqual(expectedAction);
   });
 
-  it('SIGN_IN_FAILED', () => {
-    const mockError = 'error';
-    let expectedAction = {type: 'SIGN_IN_FAILED', error: mockError};
-
-    store.dispatch(actions.signInFailed(mockError));
-    let createdAction = store.getActions();
-
-    expect(createdAction.length).toEqual(1);
-    expect(createdAction[0]).toEqual(expectedAction);
-  });
 });

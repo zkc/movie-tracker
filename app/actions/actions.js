@@ -25,13 +25,6 @@ export const signOut = () => {
   }
 };
 
-export const signInFailed = (error) => {
-  return {
-    type: 'SIGN_IN_FAILED',
-    error
-  }
-};
-
 export const addTrailers = (trailers) => {
   return {
     type: 'ADD_TRAILERS',
