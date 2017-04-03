@@ -21,14 +21,15 @@
 }
 
 .remove-btn {
-  display: block;
   margin: 10px 0 0 0;
   padding: 5px;
+  width: 105px;
+  display: block;
   background-color: #b00f0f;
   border-radius: 3px;
   border-style: none;
   color: #eee;
-  width: 105px;
+  cursor: pointer;
 }
 
 .audience {
@@ -128,4 +129,10 @@
     order: 4;
   }
 
+}
+
+@media screen and (min-width: 900px) {
+  .audience {
+    margin-left: -50px;
+  }
 }
