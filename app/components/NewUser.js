@@ -40,14 +40,14 @@ export default class NewUser extends Component {
     const { error } = this.state
     return(
       <div className="login">
-        <p>Create your MovieTracker profile!</p>
+        <p className="create-profile">Create your MovieTracker profile!</p>
         { error && <p>{error}</p> }
-        <form className="new-user">
+        <div className="new-user">
           <input name="name" required type="name" placeholder="Name" onChange={ (e) => this.handleChange(e) }/>
           <input name="email" required type="email" placeholder="Email" onChange={ (e) => this.handleChange(e) }/>
           <input name="password" required minLength="4" type="password" placeholder="Password" onChange={ (e) => this.handleChange(e) }/>
           <button className="sign-in-btn" type="submit" onClick={ (e) => this.createUser(e) }>Create account</button>
-        </form>
+        </div>
       </div>
     )
   };
