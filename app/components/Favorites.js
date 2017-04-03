@@ -10,6 +10,7 @@ class Favorites extends Component {
       return response.json()
     })
     .then(returned => {
+      /// clean up this repsonse. set data.id = data.movie_id. This will make it easier to manage
       this.props.addFavs(returned.data)
     })
   };

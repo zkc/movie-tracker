@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import FavButtonContainer from '../containers/FavButtonContainer'
 
 
 class MovieCard extends Component {
 
   saveFav(movieStuff) {
-    const { history, user } = this.props
-    if (!this.props.favorites.find(fav => movieStuff.movie_id === fav.movie_id)) {
+    const { history, user, favorites } = this.props
+    if (!favorites.find(fav => movieStuff.movie_id === fav.movie_id)) {
       fetch('http://localhost:3000/api/users/favorites/new', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -32,43 +33,23 @@ class MovieCard extends Component {
       })
   };
 
-  getAllFavs(id) {
-    fetch(`http://localhost:3000/api/users/${id}/favorites`)
-    .then(response => {
-      return response.json()
-    })
-    .then(returned => {
-      this.props.addFavs(returned.data)
-    })
-  };
-
   render () {
 
-    const { data, user, router } = this.props
-    let { movie_id, id, title, poster_path, release_date, vote_average, overview } = data;
+    const { data, user, router, favorites } = this.props
+    let { id, title, poster_path, release_date, vote_average, overview } = data;
     const baseURL = 'https://image.tmdb.org/t/p/w300';
-    let path = '';
-    switch (router.location.pathname) {
-      case '/':
-        path = '/movie'
-        break;
-      case '/favorites':
-        path = '/favorite',
-        id = movie_id
-        break;
-      default:
-        path = '/';
-    }
+
 
     return (
       <div className="movie-card">
-        { user.email ?
-        <Link to={`${path}/${id}`} onClick={ () => this.fetchTrailers(id) }>
-        <img className="movie-poster" src={baseURL + poster_path}/>
-        </Link> :
-        <Link to={'/login'}>
-        <img className="movie-poster" src={baseURL + poster_path}/>
-        </Link> }
+        { user.email
+          ?
+          <img className="movie-poster" src={baseURL + poster_path}/>
+          :
+          <Link to={'/login'}>
+            <img className="movie-poster" src={baseURL + poster_path}/>
+          </Link>
+        }
         <p className="card-footer"><span>Viewer rating: { vote_average } / 10</span>
           <button className="add-favorite" onClick={() => this.saveFav({ movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id })}>
             <img className="heart" src="../assets/styles/images/star-fav.svg"/>
@@ -81,3 +62,26 @@ class MovieCard extends Component {
 
 
 export default MovieCard;
+// <Link to={`${path}/${id}`} onClick={ () => this.fetchTrailers(id) }>
+
+// =======
+// <img src="../assets/" />
+// {
+//   user.email
+//   ?
+//   <Link to={`${path}/${data.id}`}>
+//   <img src={baseURL + data.poster_path}/>
+//   </Link>
+//   :
+//   <Link to={'/login'}>
+//   <img src={baseURL + data.poster_path}/>
+//   </Link>
+// }
+// <FavButtonContainer {...this.props} />
+// >>>>>>> kz-fav-button
+
+// <button className="add-favorite" onClick={() => {
+//   this.saveFav({movie_id: id, title, poster_path, release_date, vote_average, overview, user_id: user.id});
+//   this.getAllFavs(user.id)
+// }
+// }>Favorite</button>
