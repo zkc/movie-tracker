@@ -1,23 +1,11 @@
 import React from 'react';
 import MovieCard from './MovieCard';
-
-const removeFromMrElephant = (user_id, movie_id, history) => {
-  fetch(`http://localhost:3000/api/users/${user_id}/favorites/${movie_id}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({user_id, movie_id})
-  }).then(response => {
-    if(response.ok) {
-      history.push('/favorites')
-    }
-  })
-};
+import FavButtonContainer from '../containers/FavButtonContainer'
 
 
 const SingleMovie = ({ movie, removeFav, user, history, trailers }) => {
   const baseURL = 'https://image.tmdb.org/t/p/w300';
-  let { poster_path, title, overview, release_date, vote_average, movie_id, id} = movie;
-  if (movie_id === undefined) {movie_id = id}
+  let { poster_path, title, overview, release_date, vote_average, id} = movie;
 
   return (
     <article className="movie-details">
@@ -30,7 +18,7 @@ const SingleMovie = ({ movie, removeFav, user, history, trailers }) => {
       <p>{ overview }</p>
       <p>Release date: { release_date }</p>
       <p>Rating: { vote_average } / 10</p>
-      <button onClick={ () => removeFromMrElephant(user.id, movie_id, history) }>Remove Favorite</button>
+      <FavButtonContainer className="single-fav" user_id={user.id} movie_id={id}/>
       </div>
     </article>
   )
