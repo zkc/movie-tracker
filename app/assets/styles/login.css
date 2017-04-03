@@ -14,7 +14,7 @@
   text-align: center
 }
 
-.login form {
+.login div {
   display: flex;
   flex-direction: column;
 }
