@@ -5,6 +5,12 @@ import sinon from 'sinon';
 
 import MovieIndex from '../../components/MovieIndex.js';
 
+
+afterEach(() => {
+   expect(fetchMock.calls().unmatched).toEqual([]);
+    fetchMock.restore();
+  })
+
 function setup() {
 
   const props = {
@@ -27,17 +33,24 @@ function setup() {
 
 describe('MovieIndex', () => {
 
-  it('should render MovieIndex components', () => {
-    const { wrapper } = setup()
+  it('should add movies on API call', async (done) => {
+    const { wrapper } = setup();
+
+    fetchMock.post('https://api.themoviedb.org/3/movie/popular?api_key=27e338799cd4f5b4a3f2f72f5ec21881', { status: 200, body: {} });
+
+    await wrapper.update();
 
     expect(wrapper.find('.movie-container').length).toEqual(1);
+    expect(fetchMock.calls().matched.length).toEqual(1);
+
+    done();
   });
 
 
-  xit('calls componentDidMount', () => {
-    const { mountWrapper } = setup()
-    sinon.spy(MovieIndex.prototype, 'componentDidMount');
-    expect(MovieIndex.prototype.componentDidMount).toHaveProperty('callCount', 1);
-    App.prototype.componentDidMount.restore();
-});
+//   xit('calls componentDidMount', () => {
+//     const { mountWrapper } = setup()
+//     sinon.spy(MovieIndex.prototype, 'componentDidMount');
+//     expect(MovieIndex.prototype.componentDidMount).toHaveProperty('callCount', 1);
+//     App.prototype.componentDidMount.restore();
+// });
 })
