@@ -24,7 +24,7 @@ describe('Login Component', () => {
     fetchMock.restore();
   })
 
-  it('should display an error authentication fails', async (done) => {
+  it('should display an error authentication fails', async () => {
     fetchMock.post('http://localhost:3000/api/users', { status: 500, body: {} });
 
     let emailInput = LoginComponent.find('.email');
@@ -54,7 +54,6 @@ describe('Login Component', () => {
     let errorMessage = LoginComponent.find('.errorMessage');
 
     expect(LoginComponent.state().error).toEqual(expectedError);
-    done()
 
   });
 
