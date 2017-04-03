@@ -11,8 +11,8 @@ export default class Login extends Component {
     }
   };
 
-  login(e){
-    e.preventDefault();
+  login(){
+    // e.preventDefault();
     const { signIn, signInFailed, history } = this.props;
     const { email, password } = this.state;
 
@@ -38,7 +38,7 @@ export default class Login extends Component {
   render() {
     return(
       <div className="login">
-        <form>
+        <div>
           { this.state.error && <p className="errorMessage">{ this.state.error }</p>}
           <input className="email"
             type="email"
@@ -58,7 +58,7 @@ export default class Login extends Component {
             required
             />
           <button className="sign-in-btn"onClick={ (e) => this.login(e) }>Sign in</button>
-        </form>
+        </div>
         <Link to="/new-user" className="create-account">Create an account</Link>
       </div>
 
