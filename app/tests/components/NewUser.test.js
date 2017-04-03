@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import fetchMock from 'fetch-mock'
+import { browserHistory } from 'react-router';
 
 import NewUser from '../../components/NewUser.js';
 
@@ -26,7 +27,9 @@ describe('NewUser', () => {
 
     const button = wrapper.find('button')
 
-    button.simulate('click')
+    button.simulate('click', {
+      preventDefault: jest.fn()
+    })
     await wrapper.update()
 
     expect(wrapper.state().error).toBe('Email has already been used')
@@ -34,8 +37,8 @@ describe('NewUser', () => {
     done();
   });
 
-  it('should create a new account on successful login', async (done) => {
-
+  it('should create a new account on successful login', async () => {
+    spyOn(browserHistory, 'push');
     fetchMock.post(`http://localhost:3000/api/users/new`, {
       status: 200,
       ok: true,
@@ -45,10 +48,14 @@ describe('NewUser', () => {
 
     const button = wrapper.find('.sign-in-btn');
 
-    button.simulate('click');
+    button.simulate('click', {
+      preventDefault: jest.fn()
+    });
     await wrapper.update();
 
-    expect(fetchMock.calls().matched.length).toEqual(1);
-    done();
+    expect(browserHistory.push).toHaveBeenCalledWith('/login');
+
+    // expect(fetchMock.calls().matched.length).toEqual(1);
+    // done();
   });
 });

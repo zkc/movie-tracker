@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
 import fetchMock from 'fetch-mock';
+import { browserHistory } from 'react-router';
 
 import Login from '../../components/Login.js';
 
@@ -37,7 +38,9 @@ describe('Login Component', () => {
       }
     });
 
-    signInBtn.simulate('click');
+    signInBtn.simulate('click', {
+      preventDefault: jest.fn()
+    });
     await LoginComponent.update();
 
     let expectedError = 'Invalid Credentials';
@@ -52,6 +55,7 @@ describe('Login Component', () => {
   });
 
   it ('should redirect to homepage after successful login', async (done) => {
+    spyOn(browserHistory, 'push')
     fetchMock.post('http://localhost:3000/api/users', {
       status: 200,
       ok: true,
@@ -68,10 +72,12 @@ describe('Login Component', () => {
       }
     })
 
-    signInBtn.simulate('click');
+    signInBtn.simulate('click', {
+      preventDefault: jest.fn()
+    });
     await LoginComponent.update();
 
-    expect(fetchMock.calls().matched.length).toEqual(1);
+    expect(browserHistory.push).toHaveBeenCalledWith('/')
 
     done();
 

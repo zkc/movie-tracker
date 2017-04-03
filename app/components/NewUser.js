@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { browserHistory } from 'react-router';
 
 export default class NewUser extends Component {
   constructor(){
@@ -16,7 +16,8 @@ export default class NewUser extends Component {
     this.setState({ [e.target.name]: e.target.value })
   };
 
-  createUser() {
+  createUser(e) {
+    e.preventDefault();
     const { signIn, history } = this.props;
     const body = JSON.stringify(this.state);
 
@@ -25,20 +26,20 @@ export default class NewUser extends Component {
       headers: { 'Content-Type': 'application/json' },
       body
       })
-      .then(response => {
+    .then(response => {
       if (!response.ok) {
         this.setState({ error: 'Email has already been used' })
       }
       else {
-        history.push('/login')
+        browserHistory.push('/login')
       }
-      })
+    })
   };
 
   render() {
     const { error } = this.state
     return(
-      <div className="login">
+      <form className="login">
         <p className="create-profile">Create your MovieTracker profile!</p>
         { error && <p>{error}</p> }
         <div className="new-user">
@@ -47,7 +48,7 @@ export default class NewUser extends Component {
           <input name="password" required minLength="4" type="password" placeholder="Password" onChange={ (e) => this.handleChange(e) }/>
           <button className="sign-in-btn" type="submit" onClick={ (e) => this.createUser(e) }>Create account</button>
         </div>
-      </div>
+      </form>
     )
   };
 };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
+import { browserHistory } from 'react-router';
 
 export default class Login extends Component {
   constructor() {
@@ -11,8 +12,8 @@ export default class Login extends Component {
     }
   };
 
-  login(){
-    // e.preventDefault();
+  login(e){
+    e.preventDefault();
     const { signIn, signInFailed, history } = this.props;
     const { email, password } = this.state;
 
@@ -26,15 +27,15 @@ export default class Login extends Component {
         this.setState({ error: 'Invalid Credentials' })
       }
       else {
+        browserHistory.push('/')
         response.json().then(user => signIn(user.data))
-        history.push('/')
       }
     })
   }
 
   render() {
     return(
-      <div className="login">
+      <form className="login">
         <div>
           { this.state.error && <p className="errorMessage">{ this.state.error }</p>}
           <input className="email"
@@ -57,7 +58,7 @@ export default class Login extends Component {
           <button className="sign-in-btn"onClick={ (e) => this.login(e) }>Sign in</button>
         </div>
         <Link to="/new-user" className="create-account">Create an account</Link>
-      </div>
+      </form>
 
     )
   }
