@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
 
 export default class Login extends Component {
   constructor() {
@@ -27,7 +27,7 @@ export default class Login extends Component {
         this.setState({ error: 'Invalid Credentials' })
       }
       else {
-        browserHistory.push('/')
+        history.push('/')
         response.json().then(user => signIn(user.data))
       }
     })
