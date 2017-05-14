@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Route } from 'react-router-dom';
 import { Provider } from 'react-redux'
-
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
-
 import createHistory from 'history/createBrowserHistory'
+import thunk from 'redux-thunk';
 
 // import * as reducers from '../reducers'
 import { movies } from './reducers/movieReducer.js'
@@ -14,7 +13,7 @@ import { trailers } from './reducers/trailerReducer.js'
 import { user } from './reducers/loginReducer.js'
 import { favorites } from './reducers/favoritesReducer.js'
 import AppContainer from './containers/AppContainer';
-import MovieIndex from './components/MovieIndex';
+// import MovieIndex from './components/MovieIndex';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
@@ -28,7 +27,7 @@ const store = createStore(
     favorites,
     user,
     router: routerReducer,
-  }), devTools, applyMiddleware(middleware)
+  }), devTools, applyMiddleware(middleware, thunk)
 )
 
 const router = (
