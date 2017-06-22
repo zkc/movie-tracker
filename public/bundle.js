@@ -29602,14 +29602,9 @@
 	
 	var refreshFavorites = exports.refreshFavorites = function refreshFavorites(userID) {
 	  return function (dispatch, getState) {
-	    //check if the lengthhas changed?
-	    // console.log(getState())
 	    return fetch('/api/users/' + userID + '/favorites').then(function (response) {
-	      console.log('in thunk action promise');
-	      // console.log(response)
 	      return response.json();
 	    }).then(function (json) {
-	      // console.log(json)
 	      var adjustedMovieArray = json.data.map(function (movie) {
 	        return Object.assign(movie, { id: movie.movie_id });
 	      });
@@ -29621,7 +29616,6 @@
 	};
 	
 	var toggleFavMovie = exports.toggleFavMovie = function toggleFavMovie(user_id, movie_id) {
-	  console.log('toggline movie ' + movie_id + ' for ' + user_id);
 	  return function (dispatch, getState) {
 	    dispatch(refreshFavorites(user_id)).then(function () {
 	      var movieInQuestion = getState().favorites.find(function (movie) {
