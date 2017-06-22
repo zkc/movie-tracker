@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const cors = require('express-cors');
+const fetch = require('node-fetch')
 var bodyParser = require('body-parser')
 
 const users = require('./users');
@@ -31,10 +32,19 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.use('/api', users);
-
 app.use(express.static('public')); // re-examine this behavior later
-
 app.use('/assets', express.static(path.join(__dirname, '../app/assets')));
+
+const key = process.env.MDB_KEY || require('../.env.js').MDB_KEY
+app.get('/api/allMovies', function (request, response) {
+  fetch('https://api.themoviedb.org/3/movie/popular?api_key=' + key)
+    .then(DBresponse => {
+      return DBresponse.json()
+    })
+    .then(json => {
+      response.json(json)
+    })
+})
 
 app.get('*', function (request, response) {
   response.sendFile(path.resolve(__dirname, '../public', 'index.html'));
