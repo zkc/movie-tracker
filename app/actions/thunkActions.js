@@ -2,17 +2,12 @@ import thunk from 'redux-thunk';
 
 export const refreshFavorites = (userID) => {
   return (dispatch, getState) => {
-    //check if the lengthhas changed?
-    // console.log(getState())
     return fetch(`/api/users/${userID}/favorites`)
     .then(response => {
-      console.log('in thunk action promise')
-      // console.log(response)
       return response.json()
     })
     .then(
       json => {
-        // console.log(json)
         const adjustedMovieArray = json.data.map(movie => Object.assign(movie, { id: movie.movie_id }))
         dispatch(addFavs(adjustedMovieArray))
       },
@@ -22,7 +17,6 @@ export const refreshFavorites = (userID) => {
 }
 
 export const toggleFavMovie = (user_id, movie_id) => {
-  console.log('toggline movie ' + movie_id + ' for ' + user_id)
   return (dispatch, getState) => {
     dispatch(refreshFavorites(user_id))
     .then(() => {
