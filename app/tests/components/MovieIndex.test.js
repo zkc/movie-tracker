@@ -34,7 +34,7 @@ describe('MovieIndex', () => {
   xit('should add movies on API call', async () => {
     const { wrapper } = setup();
 
-    fetchMock.post('https://api.themoviedb.org/3/movie/popular?api_key=27e338799cd4f5b4a3f2f72f5ec21881', { status: 200, body: {} });
+    fetchMock.post('https://api.themoviedb.org/3/movie/popular?api_key=', { status: 200, body: {} });
 
     await wrapper.update();
 

@@ -1,11 +1,17 @@
-// const Server = require('./server');
 const path = require('path');
 const express = require('express');
 const cors = require('express-cors');
+const fetch = require('node-fetch')
 var bodyParser = require('body-parser')
+
+const users = require('./users');
+
 const port = (process.env.PORT || 3000);
 const app = express();
-const users = require('./users');
+
+// Mogan here if needed
+// const morgan = require('morgan');
+// app.use(morgan('dev'));
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,12 +31,24 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
+app.use('/api', users);
+app.use(express.static('public')); // re-examine this behavior later
 app.use('/assets', express.static(path.join(__dirname, '../app/assets')));
 
-app.get('/', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
+const key = process.env.MDB_KEY || require('../.env.js').MDB_KEY
+app.get('/api/allMovies', function (request, response) {
+  fetch('https://api.themoviedb.org/3/movie/popular?api_key=' + key)
+    .then(DBresponse => {
+      return DBresponse.json()
+    })
+    .then(json => {
+      response.json(json)
+    })
+})
 
-app.use('/api', users);
-app.get('/*', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, '../public', 'index.html'));
+});
 
 app.listen(port);
 

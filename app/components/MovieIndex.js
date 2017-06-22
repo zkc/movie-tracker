@@ -4,7 +4,7 @@ import MovieCardContainer from '../containers/MovieCardContainer';
 export default class MovieIndex extends Component {
 
   getMovies() {
-    fetch('https://api.themoviedb.org/3/movie/popular?api_key=27e338799cd4f5b4a3f2f72f5ec21881')
+    fetch('/api/allMovies')
       .then(response => {
         return response.json()
       })
