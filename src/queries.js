@@ -6,7 +6,12 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432/users';
+var connectionString = 'postgres://qstkvpajsasnqd:b1a8d7737fdac3faee70357d1886755d5973d994d9edb693d1dbdf31bfe4630d@ec2-54-225-182-108.compute-1.amazonaws.com:5432/d3h9qo3jgns240';
+
+// if (process.env.NODE_ENV !== 'production') { 
+//   var connectionString = 'postgres://localhost:5432/users';
+// }
+
 var db = pgp(connectionString);
 
 // add query functions
