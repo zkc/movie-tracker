@@ -1,11 +1,16 @@
-// const Server = require('./server');
 const path = require('path');
 const express = require('express');
 const cors = require('express-cors');
 var bodyParser = require('body-parser')
+
+const users = require('./users');
+
 const port = (process.env.PORT || 3000);
 const app = express();
-const users = require('./users');
+
+// Mogan here if needed
+// const morgan = require('morgan');
+// app.use(morgan('dev'));
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,12 +30,15 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
+app.use('/api', users);
+
+app.use(express.static('public')); // re-examine this behavior later
+
 app.use('/assets', express.static(path.join(__dirname, '../app/assets')));
 
-app.get('*', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
-
-app.use('/api', users);
-// app.get('/*', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, '../public', 'index.html'));
+});
 
 app.listen(port);
 
