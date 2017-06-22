@@ -29756,7 +29756,6 @@
 	    value: function getMovies() {
 	      var _this2 = this;
 	
-	      // fetch('https://api.themoviedb.org/3/movie/popular?api_key=27e338799cd4f5b4a3f2f72f5ec21881')
 	      fetch('/api/allMovies').then(function (response) {
 	        return response.json();
 	      }).then(function (json) {
@@ -29913,7 +29912,7 @@
 	
 	exports.default = MovieCard;
 	// fetchTrailers(id) {
-	//   fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=27e338799cd4f5b4a3f2f72f5ec21881&language=en-US`)
+	//   fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${}&language=en-US`)
 	//     .then(response => {
 	//       return response.json()
 	//     })
