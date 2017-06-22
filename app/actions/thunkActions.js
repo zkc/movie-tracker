@@ -4,7 +4,7 @@ export const refreshFavorites = (userID) => {
   return (dispatch, getState) => {
     //check if the lengthhas changed?
     // console.log(getState())
-    return fetch(`http://localhost:3000/api/users/${userID}/favorites`)
+    return fetch(`/api/users/${userID}/favorites`)
     .then(response => {
       console.log('in thunk action promise')
       // console.log(response)
@@ -45,7 +45,7 @@ export const addFavs = (favorites) => {
 
 const removeFromMrElephant = (user_id, movie_id) => {
   return (dispatch) => {
-    fetch(`http://localhost:3000/api/users/${user_id}/favorites/${movie_id}`, {
+    fetch(`/api/users/${user_id}/favorites/${movie_id}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({user_id, movie_id})
@@ -63,7 +63,7 @@ const addToMrElephant = (user_id, movie) => {
   return (dispatch) => {
     const { id, title, poster_path, release_date, vote_average, overview } = movie
     const movieStuff = { movie_id: id, user_id, title, poster_path, release_date, vote_average, overview }
-    fetch('http://localhost:3000/api/users/favorites/new', {
+    fetch('/api/users/favorites/new', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(movieStuff)
