@@ -17,6 +17,7 @@
     "express": "^4.14.0",
     "express-cors": "0.0.3",
     "history": "^4.6.1",
+    "node-fetch": "^1.7.1",
     "pg-promise": "^3.2.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
