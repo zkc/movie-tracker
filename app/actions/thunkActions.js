@@ -1,18 +1,21 @@
 import thunk from 'redux-thunk';
 
+export const addFavs = (favorites) => {
+  return {
+    type: 'ADD_FAVORITES',
+    favorites
+  }
+}
+
 export const refreshFavorites = (userID) => {
   return (dispatch, getState) => {
-    //check if the lengthhas changed?
-    // console.log(getState())
     return fetch(`http://localhost:3000/api/users/${userID}/favorites`)
+    // in order to test refactor this to not return response.json() -- no need to move it down.
     .then(response => {
-      console.log('in thunk action promise')
-      // console.log(response)
-      return response.json()
+      return response.json()//.then( function_below 
     })
     .then(
       json => {
-        // console.log(json)
         const adjustedMovieArray = json.data.map(movie => Object.assign(movie, { id: movie.movie_id }))
         dispatch(addFavs(adjustedMovieArray))
       },
@@ -22,7 +25,7 @@ export const refreshFavorites = (userID) => {
 }
 
 export const toggleFavMovie = (user_id, movie_id) => {
-  console.log('toggline movie ' + movie_id + ' for ' + user_id)
+  console.log('toggling movie ' + movie_id + ' for ' + user_id)
   return (dispatch, getState) => {
     dispatch(refreshFavorites(user_id))
     .then(() => {
@@ -36,12 +39,8 @@ export const toggleFavMovie = (user_id, movie_id) => {
   }
 }
 
-export const addFavs = (favorites) => {
-  return {
-    type: 'ADD_FAVORITES',
-    favorites
-  }
-}
+
+////// Non exported section below
 
 const removeFromMrElephant = (user_id, movie_id) => {
   return (dispatch) => {
