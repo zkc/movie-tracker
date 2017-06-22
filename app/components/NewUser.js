@@ -21,7 +21,7 @@ export default class NewUser extends Component {
     const { signIn, history } = this.props;
     const body = JSON.stringify(this.state);
 
-    fetch('http://localhost:3000/api/users/new', {
+    fetch('/api/users/new', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body
